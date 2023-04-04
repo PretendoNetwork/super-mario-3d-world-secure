@@ -4,8 +4,8 @@ go 1.19
 
 require (
 	github.com/PretendoNetwork/nex-go v1.0.14
-	github.com/PretendoNetwork/nex-protocols-common-go v1.0.15
-	github.com/PretendoNetwork/nex-protocols-go v1.0.16
+	github.com/PretendoNetwork/nex-protocols-common-go v1.0.16
+	github.com/PretendoNetwork/nex-protocols-go v1.0.19
 	github.com/PretendoNetwork/plogger-go v1.0.2
 	github.com/aws/aws-sdk-go-v2 v1.17.7
 	github.com/aws/aws-sdk-go-v2/config v1.18.19
@@ -35,6 +35,6 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.18 // indirect
 	github.com/superwhiskers/crunch/v3 v3.5.7 // indirect
-	golang.org/x/sys v0.6.0 // indirect
+	golang.org/x/sys v0.7.0 // indirect
 	golang.org/x/term v0.6.0 // indirect
 )
