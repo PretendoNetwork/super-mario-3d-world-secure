@@ -1,0 +1,3 @@
+package nex
+
+func registerNEXProtocols() {}
