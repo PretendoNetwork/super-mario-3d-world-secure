@@ -11,5 +11,6 @@ func registerNEXProtocols() {
 
 	datastoreProtocol.SearchObject(nex_datastore.SearchObject)
 	datastoreProtocol.PreparePostObject(nex_datastore.PreparePostObject)
+	datastoreProtocol.PrepareGetObject(nex_datastore.PrepareGetObject)
 	datastoreProtocol.CompletePostObject(nex_datastore.CompletePostObject)
 }

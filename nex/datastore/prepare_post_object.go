@@ -35,11 +35,11 @@ func PreparePostObject(err error, client *nex.Client, callID uint32, param *nexp
 		_ = database.InsertRatingByDataIDAndDataStoreRatingInitParamWithSlot(dataID, ratingInitParam)
 	}
 
-	s3Bucket := os.Getenv("PN_SM3DW_CONFIG_S3_BUCKET")
+	bucket := os.Getenv("PN_SM3DW_CONFIG_S3_BUCKET")
 	key := fmt.Sprintf("ghosts/%d.bin", dataID)
 
 	input := &globals.PostObjectInput{
-		Bucket:    s3Bucket,
+		Bucket:    bucket,
 		Key:       key,
 		ExpiresIn: time.Minute * 15,
 	}
