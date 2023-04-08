@@ -6,12 +6,12 @@ import (
 	"time"
 
 	"github.com/PretendoNetwork/nex-go"
-	nexproto "github.com/PretendoNetwork/nex-protocols-go"
+	"github.com/PretendoNetwork/nex-protocols-go/datastore"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/database"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/globals"
 )
 
-func PreparePostObject(err error, client *nex.Client, callID uint32, param *nexproto.DataStorePreparePostParam) {
+func PreparePostObject(err error, client *nex.Client, callID uint32, param *datastore.DataStorePreparePostParam) {
 	metaBinary := database.GetMetaBinaryByTypeAndOwnerPIDAndSlotID(param.DataType, client.PID(), uint8(param.PersistenceInitParam.PersistenceSlotId))
 
 	if metaBinary.DataID != 0 {
@@ -46,40 +46,40 @@ func PreparePostObject(err error, client *nex.Client, callID uint32, param *nexp
 
 	res, _ := globals.S3PresignClient.PresignPostObject(input)
 
-	fieldKey := nexproto.NewDataStoreKeyValue()
+	fieldKey := datastore.NewDataStoreKeyValue()
 	fieldKey.Key = "key"
 	fieldKey.Value = key
 
-	fieldCredential := nexproto.NewDataStoreKeyValue()
+	fieldCredential := datastore.NewDataStoreKeyValue()
 	fieldCredential.Key = "X-Amz-Credential"
 	fieldCredential.Value = res.Credential
 
-	fieldSecurityToken := nexproto.NewDataStoreKeyValue()
+	fieldSecurityToken := datastore.NewDataStoreKeyValue()
 	fieldSecurityToken.Key = "X-Amz-Security-Token"
 	fieldSecurityToken.Value = ""
 
-	fieldAlgorithm := nexproto.NewDataStoreKeyValue()
+	fieldAlgorithm := datastore.NewDataStoreKeyValue()
 	fieldAlgorithm.Key = "X-Amz-Algorithm"
 	fieldAlgorithm.Value = "AWS4-HMAC-SHA256"
 
-	fieldDate := nexproto.NewDataStoreKeyValue()
+	fieldDate := datastore.NewDataStoreKeyValue()
 	fieldDate.Key = "X-Amz-Date"
 	fieldDate.Value = res.Date
 
-	fieldPolicy := nexproto.NewDataStoreKeyValue()
+	fieldPolicy := datastore.NewDataStoreKeyValue()
 	fieldPolicy.Key = "policy"
 	fieldPolicy.Value = res.Policy
 
-	fieldSignature := nexproto.NewDataStoreKeyValue()
+	fieldSignature := datastore.NewDataStoreKeyValue()
 	fieldSignature.Key = "X-Amz-Signature"
 	fieldSignature.Value = res.Signature
 
-	pReqPostInfo := nexproto.NewDataStoreReqPostInfo()
+	pReqPostInfo := datastore.NewDataStoreReqPostInfo()
 
 	pReqPostInfo.DataID = 1
 	pReqPostInfo.URL = res.URL
-	pReqPostInfo.RequestHeaders = []*nexproto.DataStoreKeyValue{}
-	pReqPostInfo.FormFields = []*nexproto.DataStoreKeyValue{
+	pReqPostInfo.RequestHeaders = []*datastore.DataStoreKeyValue{}
+	pReqPostInfo.FormFields = []*datastore.DataStoreKeyValue{
 		fieldKey,
 		fieldCredential,
 		fieldSecurityToken,
@@ -96,8 +96,8 @@ func PreparePostObject(err error, client *nex.Client, callID uint32, param *nexp
 
 	rmcResponseBody := rmcResponseStream.Bytes()
 
-	rmcResponse := nex.NewRMCResponse(nexproto.DataStoreProtocolID, callID)
-	rmcResponse.SetSuccess(nexproto.DataStoreMethodPreparePostObject, rmcResponseBody)
+	rmcResponse := nex.NewRMCResponse(datastore.ProtocolID, callID)
+	rmcResponse.SetSuccess(datastore.MethodPreparePostObject, rmcResponseBody)
 
 	rmcResponseBytes := rmcResponse.Bytes()
 

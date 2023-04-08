@@ -3,9 +3,9 @@ module github.com/PretendoNetwork/super-mario-3d-world-secure
 go 1.19
 
 require (
-	github.com/PretendoNetwork/nex-go v1.0.15
-	github.com/PretendoNetwork/nex-protocols-common-go v1.0.16
-	github.com/PretendoNetwork/nex-protocols-go v1.0.19
+	github.com/PretendoNetwork/nex-go v1.0.16
+	github.com/PretendoNetwork/nex-protocols-common-go v1.0.17
+	github.com/PretendoNetwork/nex-protocols-go v1.0.20
 	github.com/PretendoNetwork/plogger-go v1.0.2
 	github.com/aws/aws-sdk-go-v2 v1.17.8
 	github.com/aws/aws-sdk-go-v2/config v1.18.20

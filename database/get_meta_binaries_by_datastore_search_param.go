@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/PretendoNetwork/nex-go"
-	nexproto "github.com/PretendoNetwork/nex-protocols-go"
+	"github.com/PretendoNetwork/nex-protocols-go/datastore"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/globals"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/types"
 	"github.com/lib/pq"
@@ -17,7 +17,7 @@ DataStoreSearchParam.ResultRange: &{Offset:0 Length:20 Structure:{StructureInter
 
 */
 
-func GetMetaBinariesByDataStoreSearchParam(param *nexproto.DataStoreSearchParam) []*types.MetaBinary {
+func GetMetaBinariesByDataStoreSearchParam(param *datastore.DataStoreSearchParam) []*types.MetaBinary {
 	metaBinaries := make([]*types.MetaBinary, 0, param.ResultRange.Length)
 
 	rows, err := Postgres.Query(`

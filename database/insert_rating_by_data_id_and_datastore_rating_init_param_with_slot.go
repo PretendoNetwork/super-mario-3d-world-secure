@@ -1,11 +1,11 @@
 package database
 
 import (
-	nexproto "github.com/PretendoNetwork/nex-protocols-go"
+	"github.com/PretendoNetwork/nex-protocols-go/datastore"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/globals"
 )
 
-func InsertRatingByDataIDAndDataStoreRatingInitParamWithSlot(dataID uint32, ratingInitParam *nexproto.DataStoreRatingInitParamWithSlot) error {
+func InsertRatingByDataIDAndDataStoreRatingInitParamWithSlot(dataID uint32, ratingInitParam *datastore.DataStoreRatingInitParamWithSlot) error {
 	_, err := Postgres.Exec(`
 		INSERT INTO ratings (
 			data_id,

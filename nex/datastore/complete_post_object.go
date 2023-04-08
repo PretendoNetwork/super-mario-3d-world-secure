@@ -8,12 +8,12 @@ import (
 	awshttp "github.com/aws/aws-sdk-go-v2/aws/transport/http"
 
 	nex "github.com/PretendoNetwork/nex-go"
-	nexproto "github.com/PretendoNetwork/nex-protocols-go"
+	"github.com/PretendoNetwork/nex-protocols-go/datastore"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/database"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/globals"
 )
 
-func CompletePostObject(_ error, client *nex.Client, callID uint32, param *nexproto.DataStoreCompletePostParam) {
+func CompletePostObject(_ error, client *nex.Client, callID uint32, param *datastore.DataStoreCompletePostParam) {
 	bucket := os.Getenv("PN_SM3DW_CONFIG_S3_BUCKET")
 	key := fmt.Sprintf("ghosts/%d.bin", param.DataID)
 
@@ -34,8 +34,8 @@ func CompletePostObject(_ error, client *nex.Client, callID uint32, param *nexpr
 		}
 	}
 
-	rmcResponse := nex.NewRMCResponse(nexproto.DataStoreProtocolID, callID)
-	rmcResponse.SetSuccess(nexproto.DataStoreMethodCompletePostObject, nil)
+	rmcResponse := nex.NewRMCResponse(datastore.ProtocolID, callID)
+	rmcResponse.SetSuccess(datastore.MethodCompletePostObject, nil)
 
 	rmcResponseBytes := rmcResponse.Bytes()
 
