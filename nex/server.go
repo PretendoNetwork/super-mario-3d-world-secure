@@ -17,7 +17,7 @@ func StartNEXServer() {
 		Minor: 4,
 		Patch: 0,
 	})
-	globals.NEXServer.SetKerberosPassword(os.Getenv("KERBEROS_PASSWORD"))
+	globals.NEXServer.SetKerberosPassword(os.Getenv("PN_SM3DW_KERBEROS_PASSWORD"))
 	globals.NEXServer.SetAccessKey("86a89872")
 
 	globals.NEXServer.On("Data", func(packet *nex.PacketV1) {
@@ -33,5 +33,5 @@ func StartNEXServer() {
 	registerCommonProtocols()
 	registerNEXProtocols()
 
-	globals.NEXServer.Listen(":60031")
+	globals.NEXServer.Listen(":" + os.Getenv("PN_SM3DW_SECURE_SERVER_PORT"))
 }

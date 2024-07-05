@@ -14,7 +14,7 @@ var Postgres *sql.DB
 func connectPostgres() {
 	var err error
 
-	Postgres, err = sql.Open("postgres", os.Getenv("POSTGRES_URI"))
+	Postgres, err = sql.Open("postgres", os.Getenv("PN_SM3DW_POSTGRES_URI"))
 	if err != nil {
 		globals.Logger.Critical(err.Error())
 	}
