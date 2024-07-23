@@ -3,12 +3,12 @@ package database
 import (
 	"time"
 
-	"github.com/PretendoNetwork/nex-protocols-go/datastore"
+	datastore_types "github.com/PretendoNetwork/nex-protocols-go/v2/datastore/types"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/globals"
 	"github.com/lib/pq"
 )
 
-func InsertMetaBinaryByDataStorePreparePostParamWithOwnerPID(dataStorePreparePostParam *datastore.DataStorePreparePostParam, pid uint32) uint32 {
+func InsertMetaBinaryByDataStorePreparePostParamWithOwnerPID(dataStorePreparePostParam *datastore_types.DataStorePreparePostParam, pid uint32) uint32 {
 	var dataID uint32
 
 	now := time.Now().UnixNano()
@@ -42,7 +42,7 @@ func InsertMetaBinaryByDataStorePreparePostParamWithOwnerPID(dataStorePreparePos
 		dataStorePreparePostParam.Flag,
 		dataStorePreparePostParam.Period,
 		pq.Array(dataStorePreparePostParam.Tags),
-		dataStorePreparePostParam.PersistenceInitParam.PersistenceSlotId,
+		dataStorePreparePostParam.PersistenceInitParam.PersistenceSlotID.Value,
 		pq.Array(dataStorePreparePostParam.ExtraData),
 		now,
 		now,

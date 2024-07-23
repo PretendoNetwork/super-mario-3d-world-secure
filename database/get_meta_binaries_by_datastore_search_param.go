@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/PretendoNetwork/nex-go"
-	"github.com/PretendoNetwork/nex-protocols-go/datastore"
+	nex_types "github.com/PretendoNetwork/nex-go/v2/types"
+	datastore_types "github.com/PretendoNetwork/nex-protocols-go/v2/datastore/types"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/globals"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/types"
 	"github.com/lib/pq"
@@ -17,8 +17,8 @@ DataStoreSearchParam.ResultRange: &{Offset:0 Length:20 Structure:{StructureInter
 
 */
 
-func GetMetaBinariesByDataStoreSearchParam(param *datastore.DataStoreSearchParam) []*types.MetaBinary {
-	metaBinaries := make([]*types.MetaBinary, 0, param.ResultRange.Length)
+func GetMetaBinariesByDataStoreSearchParam(param *datastore_types.DataStoreSearchParam) []*types.MetaBinary {
+	metaBinaries := make([]*types.MetaBinary, 0, param.ResultRange.Length.Value) // FIXME: correct?
 
 	rows, err := Postgres.Query(`
 		SELECT
@@ -51,10 +51,10 @@ func GetMetaBinariesByDataStoreSearchParam(param *datastore.DataStoreSearchParam
 	for rows.Next() {
 		metaBinary := types.NewMetaBinary()
 
-		metaBinary.CreationTime = nex.NewDateTime(0)
-		metaBinary.UpdatedTime = nex.NewDateTime(0)
-		metaBinary.ReferredTime = nex.NewDateTime(0)
-		metaBinary.ExpireTime = nex.NewDateTime(0)
+		metaBinary.CreationTime = nex_types.NewDateTime(0)
+		metaBinary.UpdatedTime = nex_types.NewDateTime(0)
+		metaBinary.ReferredTime = nex_types.NewDateTime(0)
+		metaBinary.ExpireTime = nex_types.NewDateTime(0)
 
 		var creationTimestamp int64
 		var updatedTimestamp int64
