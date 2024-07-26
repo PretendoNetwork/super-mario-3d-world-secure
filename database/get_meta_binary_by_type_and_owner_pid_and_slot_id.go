@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/PretendoNetwork/nex-go"
+	nex_types "github.com/PretendoNetwork/nex-go/v2/types"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/globals"
 	"github.com/PretendoNetwork/super-mario-3d-world-secure/types"
 	"github.com/lib/pq"
@@ -13,10 +13,10 @@ import (
 func GetMetaBinaryByTypeAndOwnerPIDAndSlotID(dataType uint16, pid uint32, slotID uint8) *types.MetaBinary {
 	metaBinary := types.NewMetaBinary()
 
-	metaBinary.CreationTime = nex.NewDateTime(0)
-	metaBinary.UpdatedTime = nex.NewDateTime(0)
-	metaBinary.ReferredTime = nex.NewDateTime(0)
-	metaBinary.ExpireTime = nex.NewDateTime(0)
+	metaBinary.CreationTime = nex_types.NewDateTime(0)
+	metaBinary.UpdatedTime = nex_types.NewDateTime(0)
+	metaBinary.ReferredTime = nex_types.NewDateTime(0)
+	metaBinary.ExpireTime = nex_types.NewDateTime(0)
 
 	var creationTimestamp int64
 	var updatedTimestamp int64
