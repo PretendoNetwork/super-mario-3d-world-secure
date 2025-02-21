@@ -24,7 +24,6 @@ func init() {
 
 	var err error
 
-	//err = godotenv.Load("../super-smash-bros-3ds.env")
 	err = godotenv.Load(".env")
 	if err != nil {
 		globals.Logger.Warning("Error loading .env file")
