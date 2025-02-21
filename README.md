@@ -1,4 +1,4 @@
-# Kid Icarus Uprising (3DS) replacement server
+# Super Mario 3D World replacement server
 Includes both the authentication and secure servers
 
 ## Compiling
@@ -44,8 +44,6 @@ All configuration options are handled via environment variables
 
 | Name                                    | Description                                                                                                            | Required                                      |
 |-----------------------------------------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| `PN_SM3DW_POSTGRES_URI`               | Fully qualified URI to your Postgres server (Example `postgres://username:password@localhost/SM3DW?sslmode=disable`) | Yes                                           |
-| `PN_SM3DW_KERBEROS_PASSWORD`          | Password used as part of the internal server data in Kerberos tickets                                                  | No (Default password `password` will be used) |
 | `PN_SM3DW_AUTHENTICATION_SERVER_PORT` | Port for the authentication server                                                                                     | Yes                                           |
 | `PN_SM3DW_SECURE_SERVER_HOST`         | Host name for the secure server (should point to the same address as the authentication server)                        | Yes                                           |
 | `PN_SM3DW_SECURE_SERVER_PORT`         | Port for the secure server                                                                                             | Yes                                           |
